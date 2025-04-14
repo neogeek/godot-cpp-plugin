@@ -1,3 +1,5 @@
 .scons_cache/
 
 .sconsign.dblite
+
+include/*.os
