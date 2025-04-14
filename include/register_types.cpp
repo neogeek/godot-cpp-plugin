@@ -1,5 +1,7 @@
 #include "register_types.hpp"
 
+#include "godot_cpp_plugin.hpp"
+
 #include <gdextension_interface.h>
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/core/defs.hpp>
@@ -13,6 +15,8 @@ void initialize_godot_cpp_plugin(ModuleInitializationLevel p_level)
     {
         return;
     }
+
+    GDREGISTER_VIRTUAL_CLASS(godot_cpp_plugin);
 }
 
 void uninitialize_godot_cpp_plugin(ModuleInitializationLevel p_level)
