@@ -3,6 +3,7 @@
 #include <algorithm>
 
 #include <godot_cpp/core/class_db.hpp>
+#include <godot_cpp/core/object.hpp>
 
 using namespace godot;
 
@@ -13,6 +14,8 @@ void Screensaver::_bind_methods()
     ClassDB::bind_method(D_METHOD("get_speed"), &Screensaver::get_speed);
 
     ADD_PROPERTY(PropertyInfo(Variant::INT, "speed"), "set_speed", "get_speed");
+
+    ADD_SIGNAL(MethodInfo("wall_bounce"));
 }
 
 void Screensaver::set_speed(const int value) { speed = value; }
@@ -41,11 +44,15 @@ void Screensaver::_process(double delta)
     if (position.x > max_x || position.x < min_x)
     {
         x_direction = -x_direction;
+
+        emit_signal("wall_bounce");
     }
 
     if (position.y > max_y || position.y < min_y)
     {
         y_direction = -y_direction;
+
+        emit_signal("wall_bounce");
     }
 
     position.x = std::clamp(position.x, min_x, max_x);
