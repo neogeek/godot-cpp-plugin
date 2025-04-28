@@ -13,6 +13,9 @@ class Screensaver : public Sprite2D
   private:
     int speed = 200;
 
+    void set_speed(const int value);
+    int get_speed();
+
     Vector2 screen_size;
     Vector2 sprite_size;
 

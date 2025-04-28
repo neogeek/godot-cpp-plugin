@@ -6,7 +6,18 @@
 
 using namespace godot;
 
-void Screensaver::_bind_methods() {}
+void Screensaver::_bind_methods()
+{
+    ClassDB::bind_method(D_METHOD("set_speed", "speed"),
+                         &Screensaver::set_speed);
+    ClassDB::bind_method(D_METHOD("get_speed"), &Screensaver::get_speed);
+
+    ADD_PROPERTY(PropertyInfo(Variant::INT, "speed"), "set_speed", "get_speed");
+}
+
+void Screensaver::set_speed(const int value) { speed = value; }
+
+int Screensaver::get_speed() { return speed; }
 
 void Screensaver::_ready()
 {
